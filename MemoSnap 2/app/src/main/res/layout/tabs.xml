@@ -1,0 +1,63 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout 
+	android:id="@+id/bottom_tab_layout"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal"
+    >
+ <LinearLayout
+  	android:layout_height="wrap_content"
+  	android:id="@+id/cam"
+  	android:layout_width="wrap_content"
+  	android:layout_weight="1"
+  	android:background="#ff3db775"
+    android:onClick="runPhotosFragment"
+    android:clickable="true"
+  	android:gravity="center">
+     <ImageView
+         android:id="@+id/snapShotIcon"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:layout_margin="3dp"
+         android:src="@drawable/camera" />
+  </LinearLayout>
+  
+   <LinearLayout
+  	android:layout_height="wrap_content"
+  	android:id="@+id/note"
+  	android:layout_width="match_parent"
+  	android:layout_weight="1"
+  	android:background="#ff7470d1"
+    android:clickable="true"
+    android:onClick="runNotesFragment"
+  	android:gravity="center">
+       <ImageView
+           android:id="@+id/snapNoteIcon"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:src="@drawable/quote" />
+  </LinearLayout>
+  
+   <LinearLayout
+  	android:layout_height="wrap_content"
+  	android:id="@+id/audior"
+  	android:layout_width="match_parent"
+  	android:layout_weight="1"
+  	android:background="#ff4d9ac5"
+    android:clickable="true"
+    android:onClick="runRecordingsFragment"
+  	android:gravity="center">
+       <ImageView
+           android:id="@+id/snapAudioIcon"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:layout_margin="5dp"
+           android:src="@drawable/mic3" />
+  </LinearLayout>
+
+</LinearLayout>
+</merge>

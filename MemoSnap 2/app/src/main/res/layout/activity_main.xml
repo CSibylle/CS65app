@@ -1,0 +1,62 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/camSnap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:longClickable="false"
+        android:clickable="true"
+        android:onClick="openCam"
+        android:background="#ff3db775">
+        <ImageView
+            android:id="@+id/snapShotIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/camera" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/noteSnap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:onClick="writeNote"
+        android:background="#ff7470d1">
+
+        <ImageView
+            android:id="@+id/snapNoteIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/quote" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/audioSnap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:onClick="recordAudio"
+        android:background="#ff4d9ac5">
+
+        <ImageView
+            android:id="@+id/snapAudioIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/mic3" />
+    </LinearLayout>
+
+</LinearLayout>

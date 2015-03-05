@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MemoSnap</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_save">SaveActivity</string>
+    <string name="title_activity_note">NoteActivity</string>
+    <string name="title_activity_audio">AudioActivity</string>
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="title_activity_social">SocialActivity</string>
+    <string name="title_activity_entry_view">EntryViewActivity</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_profile_settings">ProfileSettingsActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnCancel">CANCEL</string>
+    <string name="btnSave">SAVE</string>
+    <string name="btnWall">WALL</string>
+    <string name="btnShared">SHARED</string>
+    <string name="btnFriends">FRIENDS</string>
+    <string name="action_history">History</string>
+    <string name="action_social">Social</string>
+    <string name="action_home">Home</string>
+    <string name="snap_name">Snap Name:</string>
+    <string name="enter_snap_name">snap name</string>
+    <string name="add_tag_name">Custom Tag:</string>
+    <string name="tag_name">tag name</string>
+    <string name="button_save">SAVE</string>
+    <string name="button_cancel">CANCEL</string>
+    <string name="facebook_app_id">963221427044591</string>
+    <string name="action_profile">Profile</string>
+    <string name="twitter_consumer_key">oZaBeW1bwebaiUhnpgaZsIaYJ</string>
+    <string name="twitter_consumer_secret">xHEvfwbWKFNg3SwJeGoml5FWnN2GCAroZXzEC5ZludIsR5Xrxs</string>
+    <string name="parse_app_id">WC76yAqiBZXoFmCAo39Oxe79nsC0WXznE0jd54uJ</string>
+    <string name="parse_client_key">7UMienIoaNfR5sjkAj6X8NuOE0fAYxXhVvOT7ztY</string>
+
+    <string name="profile_logo_content_description">Logo</string>
+    <string name="profile_title_logged_in">Your are logged in as</string>
+    <string name="profile_logout_button_label">Log out</string>
+    <string name="profile_title_logged_out">You must be logged in to view your profile</string>
+    <string name="profile_login_button_label">Log in</string>
+    <string name="title_activity_after_login">AfterLoginActivity</string>
+    <string name="login">login</string>
+
+    <string name="button_share">SHARE</string>
+    <string name="type">Type:</string>
+    <string name="date">Date:</string>
+    <string name="btnContinue">CONTINUE</string>
+
+</resources>

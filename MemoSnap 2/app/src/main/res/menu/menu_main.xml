@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item android:id="@+id/action_social" android:title="@string/action_social"
+        android:orderInCategory="100" android:showAsAction="ifRoom" android:icon="@drawable/ic_action_group"/>
+    <item android:id="@+id/action_history" android:title="@string/action_history"
+        android:orderInCategory="100" android:showAsAction="ifRoom" android:icon="@drawable/ic_action_save"/>
+    <item android:id="@+id/action_home" android:title="@string/action_home"
+        android:orderInCategory="100" android:showAsAction="never"/>
+    <item android:id="@+id/action_profile" android:title="@string/action_profile"
+        android:orderInCategory="100" android:showAsAction="ifRoom" android:icon="@drawable/ic_action_person"/>
+</menu>

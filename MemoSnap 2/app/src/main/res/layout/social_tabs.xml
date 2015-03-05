@@ -1,0 +1,46 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout 
+	android:id="@+id/bottom_tab_layout"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal"
+    >
+ <Button
+  	android:layout_height="wrap_content"
+  	android:id="@+id/wall"
+  	android:layout_width="match_parent"
+  	android:layout_weight="1"
+  	android:background="#ff3db775"
+    android:clickable="true"
+  	android:gravity="center"
+    android:onClick="runWallFragment"
+    android:text="@string/btnWall">
+  </Button>
+  
+  <Button
+  	android:layout_height="wrap_content"
+  	android:id="@+id/shared"
+  	android:layout_width="match_parent"
+  	android:layout_weight="1"
+  	android:background="#ff7470d1"
+    android:clickable="true"
+  	android:gravity="center"
+    android:onClick="runSharedFragment"
+    android:text="@string/btnShared">
+  </Button>
+  
+  <Button
+  	android:layout_height="wrap_content"
+  	android:id="@+id/friends"
+  	android:layout_width="match_parent"
+  	android:layout_weight="1"
+  	android:background="#ff4d9ac5"
+    android:clickable="true"
+  	android:gravity="center"
+    android:onClick="runFriendsFragment"
+    android:text="@string/btnFriends">
+  </Button>
+
+</LinearLayout>
+</merge>
