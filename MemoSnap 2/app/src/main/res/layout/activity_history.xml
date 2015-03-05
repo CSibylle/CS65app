@@ -3,15 +3,6 @@
     android:layout_height="match_parent"
     tools:context="edu.dartmouth.cs.memosnap.HistoryActivity">
 
-    <!--<LinearLayout
-        android:id="@+id/l1"
-        android:layout_width="fill_parent"
-        android:layout_height="70dp"
-        android:gravity="center_horizontal"
-        android:layout_alignParentTop="true">
-
-        <include layout="@layout/tabs"/>
-    </LinearLayout>-->
 
     <edu.dartmouth.cs.memosnap.view.SlidingTabLayout
         android:id="@+id/sliding_tabs"

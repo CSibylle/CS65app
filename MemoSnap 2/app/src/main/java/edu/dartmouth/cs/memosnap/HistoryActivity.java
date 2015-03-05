@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -15,10 +14,6 @@ import edu.dartmouth.cs.memosnap.view.SlidingTabLayout;
 
 
 public class HistoryActivity extends Activity {
-    private LinearLayout mCamSnapBtn;
-    private LinearLayout mNoteSnapBtn;
-    private LinearLayout mAudioSnapBtn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +39,6 @@ public class HistoryActivity extends Activity {
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setCustomTabView(R.layout.custom_tab, 0);
         slidingTabLayout.setViewPager(viewPager);
-
-
-        /*mCamSnapBtn = (LinearLayout) findViewById(R.id.camSnap);
-        mNoteSnapBtn = (LinearLayout) findViewById(R.id.noteSnap);
-        mAudioSnapBtn = (LinearLayout) findViewById(R.id.audioSnap);*/
 
     }
 
@@ -80,23 +70,4 @@ public class HistoryActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*public void runPhotosFragment(View v) {
-        mCamSnapBtn.setBackgroundColor(Color.rgb(57, 149, 89));
-        getFragmentManager().beginTransaction()
-                .add(new SavedShotsFragment(),"")
-                .commit();
-
-    }
-    public void runNotesFragment(View v) {
-        mNoteSnapBtn.setBackgroundColor(Color.rgb(97, 85, 181));
-        getFragmentManager().beginTransaction()
-                .add(new SavedNotesFragment(),"")
-                .commit();
-    }
-    public void runRecordingsFragment(View v) {
-        mAudioSnapBtn.setBackgroundColor(Color.rgb(97, 85, 181));
-        getFragmentManager().beginTransaction()
-                .add(new SavedAudioFragment(),"")
-                .commit();
-    }*/
 }
