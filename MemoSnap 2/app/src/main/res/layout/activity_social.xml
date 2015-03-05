@@ -1,33 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context="edu.dartmouth.cs.memosnap.HistoryActivity">
+    tools:context="edu.dartmouth.cs.memosnap.SocialActivity">
 
-    <LinearLayout
-        android:id="@+id/l1"
+    <edu.dartmouth.cs.memosnap.view.SlidingTabLayout
+        android:id="@+id/sliding_tabs"
         android:layout_width="fill_parent"
-        android:layout_height="70dp"
-        android:gravity="center_horizontal"
-        android:layout_alignParentTop="true">
-
-        <include layout="@layout/social_tabs"/>
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <fragment android:id="@+id/socialFrags"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        class="edu.dartmouth.cs.memosnap.WallFragment"/>
+        android:layout_height="wrap_content"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/tab"/>
-</LinearLayout>
+        android:layout_below="@+id/sliding_tabs"/>
+
+</RelativeLayout>

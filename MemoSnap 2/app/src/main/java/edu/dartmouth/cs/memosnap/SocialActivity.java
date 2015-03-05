@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,11 +14,12 @@ import android.widget.Button;
 
 import com.parse.ParseFacebookUtils;
 
+import java.util.ArrayList;
+
+import edu.dartmouth.cs.memosnap.view.SlidingTabLayout;
+
 
 public class SocialActivity extends FragmentActivity {
-    private Button mWallBtn;
-    private Button mSharedBtn;
-    private Button mFriendBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,49 +27,26 @@ public class SocialActivity extends FragmentActivity {
         setContentView(R.layout.activity_social);
         getActionBar().setDisplayShowHomeEnabled(true);
 
-        mWallBtn = (Button) findViewById(R.id.wall);
-        mSharedBtn = (Button) findViewById(R.id.shared);
-        mFriendBtn = (Button) findViewById(R.id.friends);
+        SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
 
-        mWallBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mWallBtn.setBackgroundColor(Color.rgb(57, 149, 89));
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-                Fragment frag = new WallFragment();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.socialFrags, frag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });
+        // create a fragment list in order.
+        ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+        fragments.add(new WallFragment());
+        fragments.add(new SharedFragment());
+        fragments.add(new FriendsFragment());
 
-        mSharedBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mSharedBtn.setBackgroundColor(Color.rgb(97, 85, 181));
-                Fragment frag = new SharedFragment();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.socialFrags, frag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });
-
-        mFriendBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mFriendBtn.setBackgroundColor(Color.rgb(65, 116, 162));
-                Fragment frag = new FriendsFragment();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.socialFrags, frag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });
+        // use FragmentPagerAdapter to bind the slidingTabLayout (tabs with different titles) and ViewPager (different pages of fragment) together.
+        ActionTabsViewPagerAdapter myViewPageAdapter = new ActionTabsViewPagerAdapter(getFragmentManager(),
+                fragments, this, "Social");
+        viewPager.setAdapter(myViewPageAdapter);
+        slidingTabLayout.setDistributeEvenly(true);
+        slidingTabLayout.setCustomTabView(R.layout.custom_tab, 0);
+        slidingTabLayout.setViewPager(viewPager);
     }
 
-    @Override
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);

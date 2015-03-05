@@ -34,7 +34,7 @@ public class HistoryActivity extends Activity {
 
         // use FragmentPagerAdapter to bind the slidingTabLayout (tabs with different titles) and ViewPager (different pages of fragment) together.
         ActionTabsViewPagerAdapter myViewPageAdapter = new ActionTabsViewPagerAdapter(getFragmentManager(),
-                fragments, this);
+                fragments, this,"History");
         viewPager.setAdapter(myViewPageAdapter);
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setCustomTabView(R.layout.custom_tab, 0);
