@@ -3,6 +3,7 @@ package edu.dartmouth.cs.memosnap;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,6 +31,8 @@ public class MainActivity extends Activity {
     private Uri mProfileImageCaptureUri;
     private ImageView mProfileImageView;
     private boolean isTakenFromCamera;
+
+    private byte[] imageArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,15 +81,22 @@ public class MainActivity extends Activity {
 
         switch (requestCode) {
             case REQUEST_CODE_TAKE_FROM_CAMERA:
-                Intent intent = new Intent(this, SaveActivity.class);
-                intent.putExtra("Type", "Camera");
+                Bundle extras = data.getExtras();
+                if (extras != null) {
+                    Intent intent = new Intent(this, SaveActivity.class);
+                    intent.putExtra("Type", "Camera");
 
-                // Get the date and send it with the intent
-                DateFormat df = new SimpleDateFormat("EEE, MMM d yyyy, HH:mm");
-                String date = df.format(Calendar.getInstance().getTime());
-                intent.putExtra("DateTime", date);
+                    // Get the date and send it with the intent
+                    DateFormat df = new SimpleDateFormat("EEE, MMM d yyyy, HH:mm");
+                    String date = df.format(Calendar.getInstance().getTime());
+                    intent.putExtra("DateTime", date);
 
-                startActivity(intent);
+                    Bitmap bmp = extras.getParcelable("data");
+                    dumpImage(bmp);
+                    intent.putExtra("Photo", imageArray);
+
+                    startActivity(intent);
+                }
                 break;
             default:
                 break;
@@ -120,5 +132,17 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this,AudioActivity.class);
         startActivity(intent);
 
+    }
+
+    // convert bitmap to byte array
+    private void dumpImage(Bitmap bmap) {
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            bmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+            imageArray = bos.toByteArray();
+            bos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

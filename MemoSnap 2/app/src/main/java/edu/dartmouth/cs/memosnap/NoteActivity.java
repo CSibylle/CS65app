@@ -20,10 +20,23 @@ import java.util.Calendar;
 
 
 public class NoteActivity extends Activity {
+    private Snap entry;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
+
+        if (getIntent().getStringExtra("History") != null) {
+            long id = getIntent().getLongExtra("id", -1);
+
+            SnapDBHelper dbHelper = new SnapDBHelper(getApplicationContext());
+
+            entry = dbHelper.fetchEntryByIndex(id);
+
+            EditText body = (LineEditText) findViewById(R.id.body);
+            body.setText(entry.getNote());
+        }
     }
 
     @Override
@@ -67,6 +80,17 @@ public class NoteActivity extends Activity {
         DateFormat df = new SimpleDateFormat("EEE, MMM d yyyy, HH:mm");
         String date = df.format(Calendar.getInstance().getTime());
         intent.putExtra("DateTime", date);
+
+        EditText note = (LineEditText) findViewById(R.id.body);
+        intent.putExtra("Note", note.getText().toString());
+
+        // Editing from History
+        if (getIntent().getStringExtra("History") != null) {
+            intent.putExtra("History", "history");
+            intent.putExtra("id", entry.getId());
+            intent.putExtra("Name", entry.getName());
+            intent.putExtra("Tag", entry.getTag());
+        }
 
         startActivity(intent);
 
