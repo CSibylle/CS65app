@@ -19,10 +19,8 @@ public class SavedAudioFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-<<<<<<< HEAD
         return inflater.inflate(R.layout.fragment_saved_audios, container, false);
-=======
-        return inflater.inflate(R.layout.fragment_saved_notes, container, false);
+
     }
 
     @Override
@@ -53,6 +51,5 @@ public class SavedAudioFragment extends ListFragment {
         };
 
         lv.setOnItemClickListener(mListener);
->>>>>>> fc0fafcc78497a040bf551fb19dcb3fe5a9d1ea0
     }
 }

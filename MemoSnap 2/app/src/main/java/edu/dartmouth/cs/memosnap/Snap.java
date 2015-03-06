@@ -1,5 +1,7 @@
 package edu.dartmouth.cs.memosnap;
 
+import android.location.Location;
+
 import com.parse.ParseClassName;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -16,7 +18,7 @@ import com.parse.ParseUser;
 public class Snap extends ParseObject{
     Long id;
 
-    Long user;
+    ParseUser user = ParseUser.getCurrentUser();
 
     String name;
     String type;
@@ -24,11 +26,8 @@ public class Snap extends ParseObject{
     String tag;
     byte[] photo;
     String note;
-
-
     byte[] recording;
-
-    // location;
+    Location location;
 
     public Long getId() {
         return id;
@@ -86,33 +85,28 @@ public class Snap extends ParseObject{
         this.photo = photo;
     }
 
-<<<<<<< HEAD
     public ParseUser getUser() {
-        return getParseUser("user");
+        return user;
     }
 
     public void setUser(ParseUser value) {
-        put("user", value);
+        this.user = value;
     }
 
     public ParseGeoPoint getGeoLocation() {
-        return getParseGeoPoint("location");
+        return new ParseGeoPoint(location.getLatitude(), location.getLongitude());
     }
 
-    public void setGeoLocation(ParseGeoPoint value) {
-        put("location", value);
-    }
+    //public void setGeoLocation(ParseGeoPoint value) {;}
 
     public static ParseQuery<Snap> getQuery() {
         return ParseQuery.getQuery(Snap.class);
-=======
-    public byte[] getRecording() {
-        return recording;
     }
+
+    public byte[] getRecording() {return recording;}
 
     public void setRecording(byte[] recording) {
         this.recording = recording;
->>>>>>> fc0fafcc78497a040bf551fb19dcb3fe5a9d1ea0
     }
 
 }

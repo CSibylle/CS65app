@@ -32,6 +32,7 @@
     <string name="parse_app_id">WC76yAqiBZXoFmCAo39Oxe79nsC0WXznE0jd54uJ</string>
     <string name="parse_client_key">7UMienIoaNfR5sjkAj6X8NuOE0fAYxXhVvOT7ztY</string>
 
+
     <string name="profile_logo_content_description">Logo</string>
     <string name="profile_title_logged_in">Your are logged in as</string>
     <string name="profile_logout_button_label">Log out</string>
@@ -44,9 +45,20 @@
     <string name="type">Type:</string>
     <string name="date">Date:</string>
     <string name="btnContinue">CONTINUE</string>
-<<<<<<< HEAD
-=======
     <string name="save_play">PLAY RECORDING</string>
->>>>>>> fc0fafcc78497a040bf551fb19dcb3fe5a9d1ea0
+    <string name="audioTime">00:00:00</string>
+    <string name="email">email</string>
+    <string name="profile_photo_discrip">Profile Photo:</string>
+    <string name="update_pro_pic">CHANGE</string>
+    <string name="profile_username_title">Username:</string>
+    <string name="profile_username_hint">username</string>
+    <string name="profile_name_title">Name:</string>
+    <string name="profile_name_hint">First Last</string>
+    <string name="profile_email_title">Email:</string>
+    <string name="profile_email_hint">email</string>
+    <string-array name="my_facebook_permissions">
+        <item>public_profile</item>
+        <item>user_friends</item>
+    </string-array>
 
 </resources>

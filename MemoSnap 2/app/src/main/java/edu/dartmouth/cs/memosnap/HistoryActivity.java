@@ -8,13 +8,17 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+
 import java.util.ArrayList;
 
 import edu.dartmouth.cs.memosnap.view.SlidingTabLayout;
 
 
 public class HistoryActivity extends Activity {
-
+    public MapFragment mapFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

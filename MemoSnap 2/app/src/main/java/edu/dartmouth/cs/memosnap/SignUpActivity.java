@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentActivity;
 import com.parse.ParseUser;
 import com.parse.ui.ParseLoginBuilder;
 
+import java.util.Arrays;
+
 public class SignUpActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,14 @@ public class SignUpActivity extends FragmentActivity {
     {
         ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
                 SignUpActivity.this);
-        startActivityForResult(loginBuilder.build(), MemoSnapApplication.LOGIN_REQUEST);
+        Intent parseLoginIntent = loginBuilder.setAppLogo(R.drawable.snaplogoicon)
+                .setParseLoginEnabled(true)
+                .setParseLoginEmailAsUsername(true)
+                .setFacebookLoginEnabled(true)
+                .setFacebookLoginPermissions(Arrays.asList("public_profile", "user_friends"))
+                .setTwitterLoginEnabled(true)
+                .build();
+        startActivityForResult(parseLoginIntent, 0);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

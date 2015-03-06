@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
@@ -33,6 +34,8 @@ public class AudioActivity extends Activity {
     private boolean mRecording = true;
     private boolean mPlaying = true;
 
+    private ProgressBar progressBar;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class AudioActivity extends Activity {
         setContentView(R.layout.activity_audio);
 
         getActionBar().setDisplayShowHomeEnabled(true);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
@@ -48,6 +53,7 @@ public class AudioActivity extends Activity {
         if (mRecorder != null) {
             mRecorder.release();
             mRecorder = null;
+            //progressBar.stopNestedScroll();
         }
 
         if (mPlayer != null) {
@@ -59,6 +65,9 @@ public class AudioActivity extends Activity {
     private void onRecord(boolean start) {
         if (start) {
             startRecording();
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setScaleX(70f);
+            progressBar.setScaleY(70f);
         } else {
             stopRecording();
         }
@@ -86,6 +95,7 @@ public class AudioActivity extends Activity {
     private void stopPlaying() {
         mPlayer.release();
         mPlayer = null;
+
     }
 
     private void startRecording() {
@@ -108,6 +118,7 @@ public class AudioActivity extends Activity {
         mRecorder.stop();
         mRecorder.release();
         mRecorder = null;
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     public void onRecordClicked(View v) {

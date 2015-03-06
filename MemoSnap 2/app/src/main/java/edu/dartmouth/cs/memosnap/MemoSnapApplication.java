@@ -8,8 +8,6 @@ import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseTwitterUtils;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 public class MemoSnapApplication extends Application {
 

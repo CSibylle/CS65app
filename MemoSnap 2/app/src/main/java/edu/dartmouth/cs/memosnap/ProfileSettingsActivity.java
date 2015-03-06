@@ -27,7 +27,6 @@ public class ProfileSettingsActivity extends Activity {
         setContentView(R.layout.activity_profile_settings);
         getActionBar().setDisplayShowHomeEnabled(true);
 
-        titleTextView = (TextView) findViewById(R.id.profile_title);
         emailTextView = (TextView) findViewById(R.id.profile_email);
         nameTextView = (TextView) findViewById(R.id.profile_name);
         logInOutButton = (Button) findViewById(R.id.log_in_out_button);
@@ -49,17 +48,8 @@ public class ProfileSettingsActivity extends Activity {
                 }
             }
         });
-
-    TextView tv=(TextView) findViewById(R.id.usertv);
-        Intent iin= getIntent();
-        Bundle b = iin.getExtras();
-
-        if(b!=null)
-        {
-            String j =(String) b.get("User");
-            tv.setText("Welcome "+j);
-        }
     }
+            //String j =(String) b.get("User");
 
     @Override
     protected void onStart() {

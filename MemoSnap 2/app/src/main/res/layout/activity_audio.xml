@@ -5,70 +5,92 @@
     android:background="#000"
     android:orientation="vertical"
     tools:context="edu.dartmouth.cs.memosnap.AudioActivity"
-    android:gravity="bottom">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Press RECORD to start recording."
-        android:id="@+id/recordTextView"
-        android:textSize="40dp" />
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_gravity="right" />
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp" >
-        <Button
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Play"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:id="@+id/btnPlay"
-            android:onClick="onPlayClicked"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/audioTime"
+            android:gravity="top"
+            android:id="@+id/recordTextView"
+            android:textSize="40dp"
+            android:paddingBottom="60dp"
+            android:paddingTop="20dp"
+            android:layout_gravity="center_horizontal" />
 
-        <Button
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Record"
+            android:layout_gravity="center"
+            >
+            <Button
+                android:layout_width="165dp"
+                android:layout_height="165dp"
+                android:text="Record"
+                android:background="@drawable/roundedbuttn"
+                android:id="@+id/btnRecord"
+                android:onClick="onRecordClicked"
+                android:layout_gravity="center"
+                android:layout_marginLeft="37dp"
+                android:layout_marginTop="37dp"
+                />
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:visibility="visible"
+                android:layout_width="244dp"
+                android:layout_height="244dp"
+                android:id="@+id/progressBar"
+                android:indeterminateTint="#ff4d9ac5"
+                android:indeterminate="false"
+                android:layout_gravity="center"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:id="@+id/btnRecord"
-            android:onClick="onRecordClicked" />
+            android:paddingTop="70dp">
+
+            <Button
+                android:id="@+id/btnContinue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:onClick="onContinueClicked"
+                android:text="@string/btnContinue"
+                android:background="#ff4d9ac5">
+            </Button>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Play"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:id="@+id/btnPlay"
+                android:onClick="onPlayClicked"
+                android:background="#ff4d9ac5" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:onClick="onCancelClicked"
+                android:text="@string/btnCancel"
+                android:background="#ff4d9ac5">
+            </Button>
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp" >
 
-        <Button
-            android:id="@+id/btnContinue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:onClick="onContinueClicked"
-            android:text="@string/btnContinue" >
-        </Button>
 
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:onClick="onCancelClicked"
-            android:text="@string/btnCancel">
-        </Button>
-    </LinearLayout>
+
 </LinearLayout>
