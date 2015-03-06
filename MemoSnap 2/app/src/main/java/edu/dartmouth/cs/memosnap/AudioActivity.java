@@ -157,7 +157,6 @@ public class AudioActivity extends Activity {
     public void onContinueClicked(View v) {
         Intent intent = new Intent(this, SaveActivity.class);
         intent.putExtra("Audio", "audio");
-        //intent.putExtra("File", mFileName);
         intent.putExtra("Type", "Audio");
 
         try {

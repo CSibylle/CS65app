@@ -30,7 +30,7 @@ public class SavedAudioFragment extends ListFragment {
         dbHelper = new SnapDBHelper(getActivity());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        // Only get the notes
+        // Only get the recordings
         final Cursor cursor = db.rawQuery("SELECT * FROM snaps WHERE type = 'Audio'", null);
 
         ListView lv = getListView();

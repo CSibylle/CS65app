@@ -185,8 +185,6 @@ public class SaveActivity extends Activity {
             }
         }
 
-
-
     }
 
     private void displayEntry() {
