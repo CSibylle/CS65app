@@ -9,10 +9,5 @@
         android:layout_weight="1"
         android:id="@android:id/list">
     </ListView>
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="SavedNotesFrag" android:textSize="50dp"
-        android:layout_marginTop="200dp"
-        />
-
 
 </LinearLayout>
