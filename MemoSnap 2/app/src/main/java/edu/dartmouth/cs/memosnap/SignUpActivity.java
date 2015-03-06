@@ -11,8 +11,14 @@ public class SignUpActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        logIn();
+        if (ParseUser.getCurrentUser() != null) {
+            // Start an intent for the logged in activity
+            startActivity(new Intent(this, MainActivity.class));
+        } else {
+            logIn();
+        }
     }
+
     public void logIn()
     {
         ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
@@ -25,7 +31,7 @@ public class SignUpActivity extends FragmentActivity {
         if (requestCode == MemoSnapApplication.LOGIN_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                Intent i= new Intent(SignUpActivity.this,ProfileSettingsActivity.class);
+                Intent i= new Intent(SignUpActivity.this,MainActivity.class);
                 i.putExtra("User", ParseUser.getCurrentUser().getString("name"));
                 startActivity(i);
             }

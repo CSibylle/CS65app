@@ -103,6 +103,10 @@ public class SaveActivity extends Activity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.action_profile) {
+            Intent intent = new Intent(this, ProfileSettingsActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

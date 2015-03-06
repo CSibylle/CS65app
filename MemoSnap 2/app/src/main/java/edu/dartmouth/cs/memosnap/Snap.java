@@ -1,11 +1,19 @@
 package edu.dartmouth.cs.memosnap;
 
+import com.parse.ParseClassName;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 /**
  * Model class defining the properties of a "snap."
  *
  * Created by Devin on 3/3/2015.
  */
-public class Snap {
+
+@ParseClassName("Snap")
+public class Snap extends ParseObject{
     Long id;
 
     Long user;
@@ -76,6 +84,24 @@ public class Snap {
         this.photo = photo;
     }
 
+    public ParseUser getUser() {
+        return getParseUser("user");
+    }
 
+    public void setUser(ParseUser value) {
+        put("user", value);
+    }
+
+    public ParseGeoPoint getGeoLocation() {
+        return getParseGeoPoint("location");
+    }
+
+    public void setGeoLocation(ParseGeoPoint value) {
+        put("location", value);
+    }
+
+    public static ParseQuery<Snap> getQuery() {
+        return ParseQuery.getQuery(Snap.class);
+    }
 
 }

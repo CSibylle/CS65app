@@ -63,7 +63,7 @@ public class HistoryActivity extends Activity {
         }
 
         if (id == R.id.action_profile) {
-            Intent intent = new Intent(this, SignUpActivity.class);
+            Intent intent = new Intent(this, ProfileSettingsActivity.class);
             startActivity(intent);
         }
 

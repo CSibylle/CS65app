@@ -44,5 +44,6 @@
     <string name="type">Type:</string>
     <string name="date">Date:</string>
     <string name="btnContinue">CONTINUE</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve"></string>
 
 </resources>
