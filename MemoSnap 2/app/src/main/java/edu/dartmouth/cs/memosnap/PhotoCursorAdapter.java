@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
 
@@ -30,9 +32,14 @@ public class PhotoCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ImageView image = (ImageView) view.findViewById(R.id.photo);
-        image.setLayoutParams(new GridView.LayoutParams(500, 500));
+        LinearLayout ll = (LinearLayout) view.findViewById(R.id.layout);
 
-        byte[] byteArray = cursor.getBlob(cursor.getColumnIndexOrThrow("photo"));
+        ll.setLayoutParams(new GridView.LayoutParams(500, 500));
+
+        TextView title = (TextView) view.findViewById(R.id.photo_title);
+        title.setText(cursor.getString(1));
+
+        byte[] byteArray = cursor.getBlob(5);
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(byteArray);
             Bitmap bmp = BitmapFactory.decodeStream(bis);

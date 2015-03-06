@@ -52,13 +52,13 @@
         android:layout_margin="15dp" >
 
         <Button
-            android:id="@+id/btnSave"
+            android:id="@+id/btnContinue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:onClick="onSaveClicked"
-            android:text="@string/btnSave" >
+            android:onClick="onContinueClicked"
+            android:text="@string/btnContinue" >
         </Button>
 
         <Button

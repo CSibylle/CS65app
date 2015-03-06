@@ -11,13 +11,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 public class AudioActivity extends Activity {
 
     private static final String LOG_TAG = "AudioRecordTest";
     private static String mFileName = null;
+
+    private byte[] mFileByteArray;
 
     private MediaRecorder mRecorder = null;
     private MediaPlayer mPlayer = null;
@@ -135,9 +143,36 @@ public class AudioActivity extends Activity {
     }
 
 
-    public void onSaveClicked(View v) {
+    public void onContinueClicked(View v) {
         Intent intent = new Intent(this, SaveActivity.class);
         intent.putExtra("Audio", "audio");
+        //intent.putExtra("File", mFileName);
+        intent.putExtra("Type", "Audio");
+
+        try {
+            FileInputStream fis = new FileInputStream(mFileName);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = fis.read(buffer)) != -1) {
+                baos.write(buffer, 0, read);
+            }
+            baos.flush();
+            mFileByteArray = baos.toByteArray();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        intent.putExtra("Audio Byte Array", mFileByteArray);
+
+        // Get the date and send it with the intent
+        DateFormat df = new SimpleDateFormat("EEE, MMM d yyyy, HH:mm");
+        String date = df.format(Calendar.getInstance().getTime());
+        intent.putExtra("DateTime", date);
+
         startActivity(intent);
     }
 

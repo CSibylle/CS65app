@@ -24,7 +24,9 @@ public class Snap extends ParseObject{
     String tag;
     byte[] photo;
     String note;
-    // recording;
+
+
+    byte[] recording;
 
     // location;
 
@@ -84,6 +86,7 @@ public class Snap extends ParseObject{
         this.photo = photo;
     }
 
+<<<<<<< HEAD
     public ParseUser getUser() {
         return getParseUser("user");
     }
@@ -102,6 +105,14 @@ public class Snap extends ParseObject{
 
     public static ParseQuery<Snap> getQuery() {
         return ParseQuery.getQuery(Snap.class);
+=======
+    public byte[] getRecording() {
+        return recording;
+    }
+
+    public void setRecording(byte[] recording) {
+        this.recording = recording;
+>>>>>>> fc0fafcc78497a040bf551fb19dcb3fe5a9d1ea0
     }
 
 }

@@ -44,6 +44,9 @@
     <string name="type">Type:</string>
     <string name="date">Date:</string>
     <string name="btnContinue">CONTINUE</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve"></string>
+<<<<<<< HEAD
+=======
+    <string name="save_play">PLAY RECORDING</string>
+>>>>>>> fc0fafcc78497a040bf551fb19dcb3fe5a9d1ea0
 
 </resources>

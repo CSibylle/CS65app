@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="wrap_content"
-    android:id="@+id/photo">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="wrap_content" android:id="@+id/layout"
+    android:paddingBottom="10dp" android:paddingTop="10dp">
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:layout_weight="1" android:scaleType="fitCenter"
+        android:id="@+id/photo">
+    </ImageView>
 
-</ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/photo_title"
+        android:gravity="center"
+        android:text="test"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

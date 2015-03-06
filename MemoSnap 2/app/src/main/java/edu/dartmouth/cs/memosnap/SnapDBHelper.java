@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Class to help perform database operations for the snap.
  *
@@ -79,12 +81,12 @@ public class SnapDBHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, entry.getName());
-        values.put(KEY_TYPE, entry.getName());
-        values.put(KEY_DATETIME, entry.getName());
-        values.put(KEY_TAG, entry.getName());
-        values.put(KEY_PHOTO, entry.getName());
-        values.put(KEY_NOTE, entry.getName());
-        values.put(KEY_RECORDING, entry.getName());
+        values.put(KEY_TYPE, entry.getType());
+        values.put(KEY_DATETIME, entry.getDateTime());
+        values.put(KEY_TAG, entry.getTag());
+        values.put(KEY_PHOTO, entry.getPhoto());
+        values.put(KEY_NOTE, entry.getNote());
+        values.put(KEY_RECORDING, entry.getRecording());
         //values.put(KEY_LOCATION, entry.getLocation());
 
         long insertId = db.insert(TABLE_NAME_SNAPS, null,
@@ -94,23 +96,69 @@ public class SnapDBHelper extends SQLiteOpenHelper {
                 null, null, null);
         cursor.moveToFirst();
 
+        db.close();
+
         return insertId;
     }
 
     public void removeEntry(long id) {
-        ;
+        SQLiteDatabase db = getWritableDatabase();
+
+        System.out.println("Snap deleted with id: " + id);
+        db.delete(TABLE_NAME_SNAPS, KEY_ROWID
+                + " = " + id, null);
+
+        db.close();
+
     }
 
     public Snap fetchEntryByIndex(long id) {
-        return null;
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME_SNAPS,
+                allColumns, KEY_ROWID + " = ?", new String[]{String.valueOf(id)}, null,
+                null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Snap entry = cursorToEntry(cursor);
+
+        db.close();
+
+        return entry;
     }
 
     public Cursor fetchEntries() {
-        return null;
+        ArrayList<Snap> entries = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME_SNAPS, allColumns,
+                null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Snap entry = cursorToEntry(cursor);
+            entries.add(entry);
+            cursor.moveToNext();
+        }
+
+        db.close();
+
+        return cursor;
     }
 
     private Snap cursorToEntry(Cursor cursor) {
         Snap entry = new Snap();
-        return null;
+        entry.setId(cursor.getLong(0));
+        entry.setName(cursor.getString(1));
+        entry.setType(cursor.getString(2));
+        entry.setDateTime(cursor.getString(3));
+        entry.setTag(cursor.getString(4));
+        entry.setPhoto(cursor.getBlob(5));
+        entry.setNote(cursor.getString(6));
+        entry.setRecording(cursor.getBlob(7));
+
+        return entry;
     }
 }
