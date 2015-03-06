@@ -30,7 +30,8 @@ public class SavedNotesFragment extends ListFragment {
         dbHelper = new SnapDBHelper(getActivity());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        final Cursor cursor = db.rawQuery("SELECT * FROM snaps", null);
+        // Only get the notes
+        final Cursor cursor = db.rawQuery("SELECT * FROM snaps WHERE type = 'Note'", null);
 
         ListView lv = getListView();
 

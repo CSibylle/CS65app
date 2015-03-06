@@ -44,5 +44,6 @@
     <string name="type">Type:</string>
     <string name="date">Date:</string>
     <string name="btnContinue">CONTINUE</string>
+    <string name="save_play">PLAY RECORDING</string>
 
 </resources>

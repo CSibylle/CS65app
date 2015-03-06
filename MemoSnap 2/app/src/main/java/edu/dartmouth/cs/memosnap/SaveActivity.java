@@ -4,16 +4,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class SaveActivity extends Activity {
@@ -21,6 +27,8 @@ public class SaveActivity extends Activity {
     EditText mDateTime;
     EditText mType;
     String mNote;
+    byte[] mPhotoByteArray;
+    byte[] mRecordingByteArray;
 
     private Snap entry;
 
@@ -29,46 +37,54 @@ public class SaveActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save);
 
-        entry = new Snap();
-
         mDateTime = (EditText) findViewById(R.id.save_datetime);
         mType = (EditText) findViewById(R.id.save_type);
-        if (getIntent().getStringExtra("DateTime") != null) {
-            String dateTimeString = getIntent().getStringExtra("DateTime");
-            mDateTime.setText(dateTimeString);
-        }
 
-        if (getIntent().getStringExtra("Type") != null) {
-            String typeString = getIntent().getStringExtra("Type");
-            mType.setText(typeString);
-        }
+        if (getIntent().getStringExtra("History") != null) {
+            if (getIntent().getStringExtra("History").contentEquals("Camera") ||
+                    getIntent().getStringExtra("History").contentEquals("Audio"))
+                displayEntry();
+        } else {
+            entry = new Snap();
 
-        if (getIntent().getStringExtra("Type").contentEquals("Camera")) {
-            ImageView image = (ImageView) findViewById(R.id.save_photo);
-            image.setLayoutParams(new LinearLayout.LayoutParams(800, 800));
-            image.setVisibility(View.VISIBLE);
-            byte[] byteArray = getIntent().getByteArrayExtra("Photo");
-            Log.d("byteArray Length", Integer.toString(byteArray.length));
-
-            try {
-                ByteArrayInputStream bis = new ByteArrayInputStream(
-                        byteArray);
-                Bitmap bmp = BitmapFactory.decodeStream(bis);
-                image.setImageBitmap(bmp);
-            } catch (Exception ex) {
+            if (getIntent().getStringExtra("DateTime") != null) {
+                String dateTimeString = getIntent().getStringExtra("DateTime");
+                mDateTime.setText(dateTimeString);
             }
 
-        }
+            if (getIntent().getStringExtra("Type") != null) {
+                String typeString = getIntent().getStringExtra("Type");
+                mType.setText(typeString);
+            }
 
-        if (getIntent().getStringExtra("Note") != null) {
-            mNote = getIntent().getStringExtra("Note");
+            if (getIntent().getStringExtra("Type").contentEquals("Camera")) {
+                ImageView image = (ImageView) findViewById(R.id.save_photo);
+                image.setLayoutParams(new LinearLayout.LayoutParams(600, 600));
+                image.setVisibility(View.VISIBLE);
+                mPhotoByteArray = getIntent().getByteArrayExtra("Photo");
+                try {
+                    ByteArrayInputStream bis = new ByteArrayInputStream(
+                            mPhotoByteArray);
+                    Bitmap bmp = BitmapFactory.decodeStream(bis);
+                    image.setImageBitmap(bmp);
+                } catch (Exception ex) {
+                }
 
-            if (getIntent().getStringExtra("History") != null) {
-                EditText name = (EditText) findViewById(R.id.editName);
-                name.setText(getIntent().getStringExtra("Name"));
+            }
+            else if (getIntent().getStringExtra("Type").contentEquals("Audio")) {
+                mRecordingByteArray = getIntent().getByteArrayExtra("Audio Byte Array");
+            }
 
-                EditText tag = (EditText) findViewById(R.id.editTag);
-                tag.setText(getIntent().getStringExtra("Tag"));
+            if (getIntent().getStringExtra("Note") != null) {
+                mNote = getIntent().getStringExtra("Note");
+
+                if (getIntent().getStringExtra("History") != null) {
+                    EditText name = (EditText) findViewById(R.id.editName);
+                    name.setText(getIntent().getStringExtra("Name"));
+
+                    EditText tag = (EditText) findViewById(R.id.editTag);
+                    tag.setText(getIntent().getStringExtra("Tag"));
+                }
             }
         }
     }
@@ -121,6 +137,8 @@ public class SaveActivity extends Activity {
         entry.setDateTime(mDateTime.getText().toString());
         entry.setTag(tag);
         entry.setNote(mNote);
+        entry.setPhoto(mPhotoByteArray);
+        entry.setRecording(mRecordingByteArray);
 
         dbHelper.insertEntry(entry);
 
@@ -136,5 +154,82 @@ public class SaveActivity extends Activity {
     public void onShareClicked(View v) {
         Intent intent = new Intent(this, SocialActivity.class);
         startActivity(intent);
+    }
+
+    public void onPlayClicked(View v) {
+        mRecordingByteArray = entry.getRecording();
+
+        // Play the audio recording if it exists by creating a temp file
+        if (mRecordingByteArray != null) {
+            try {
+                File temp = File.createTempFile("temp", "3gpp", getCacheDir());
+                temp.deleteOnExit();
+
+                FileOutputStream fos = new FileOutputStream(temp);
+                fos.write(mRecordingByteArray);
+                fos.close();
+
+                MediaPlayer mediaPlayer = new MediaPlayer();
+                FileInputStream fis = new FileInputStream(temp);
+                mediaPlayer.reset();
+                mediaPlayer.setDataSource(fis.getFD());
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+    }
+
+    private void displayEntry() {
+        Button save = (Button) findViewById(R.id.btnSave);
+        Button cancel = (Button) findViewById(R.id.btnCancel);
+        save.setVisibility(View.INVISIBLE);
+        cancel.setVisibility(View.INVISIBLE);
+
+        SnapDBHelper dbHelper = new SnapDBHelper(getApplicationContext());
+
+        entry = dbHelper.fetchEntryByIndex(getIntent().getLongExtra("id", -1));
+
+        mDateTime.setText(entry.getDateTime());
+        mType.setText(entry.getType());
+
+        TextView name = (TextView) findViewById(R.id.editName);
+        TextView tag = (TextView) findViewById(R.id.editTag);
+
+        name.setText(entry.getName());
+        name.setCursorVisible(false);
+        name.setFocusable(false);
+        name.setFocusableInTouchMode(false);
+
+        tag.setText(entry.getTag());
+        tag.setCursorVisible(false);
+        tag.setFocusable(false);
+        tag.setFocusableInTouchMode(false);
+
+        if (getIntent().getStringExtra("History") != null) {
+            if (getIntent().getStringExtra("History").contentEquals("Camera")) {
+                ImageView image = (ImageView) findViewById(R.id.save_photo);
+                image.setLayoutParams(new LinearLayout.LayoutParams(600, 600));
+                image.setVisibility(View.VISIBLE);
+                mPhotoByteArray = entry.getPhoto();
+                try {
+                    ByteArrayInputStream bis = new ByteArrayInputStream(
+                            mPhotoByteArray);
+                    Bitmap bmp = BitmapFactory.decodeStream(bis);
+                    image.setImageBitmap(bmp);
+                } catch (Exception ex) {
+                }
+            }
+            else if (getIntent().getStringExtra("History").contentEquals("Audio")) {
+                Button play = (Button) findViewById(R.id.play_btn);
+                play.setVisibility(View.VISIBLE);
+            }
+        }
+
     }
 }

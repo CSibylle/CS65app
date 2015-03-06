@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -107,12 +105,6 @@ public class MainActivity extends Activity {
     public void openCam(View v) {
         // create intent to take picture on phone camera，
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // temporary image path and name
-        mProfileImageCaptureUri = Uri.fromFile(new File(Environment
-                .getExternalStorageDirectory(), "tmp_"
-                + String.valueOf(System.currentTimeMillis()) + ".jpg"));
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                mProfileImageCaptureUri);
         intent.putExtra("return-data", true);
         try {
             startActivityForResult(intent, REQUEST_CODE_TAKE_FROM_CAMERA);

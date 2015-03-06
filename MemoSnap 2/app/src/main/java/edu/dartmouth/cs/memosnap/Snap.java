@@ -16,7 +16,9 @@ public class Snap {
     String tag;
     byte[] photo;
     String note;
-    // recording;
+
+
+    byte[] recording;
 
     // location;
 
@@ -76,6 +78,12 @@ public class Snap {
         this.photo = photo;
     }
 
+    public byte[] getRecording() {
+        return recording;
+    }
 
+    public void setRecording(byte[] recording) {
+        this.recording = recording;
+    }
 
 }
