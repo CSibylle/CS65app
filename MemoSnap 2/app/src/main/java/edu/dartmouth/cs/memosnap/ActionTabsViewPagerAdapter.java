@@ -30,10 +30,21 @@ public class ActionTabsViewPagerAdapter extends FragmentPagerAdapter {
     Context context;
 
 
-    public ActionTabsViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> fragments, Context context){
+    public ActionTabsViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> fragments, Context context,String tabType){
         super(fm);
         this.fragments = fragments;
         this.context = context;
+
+        if (tabType == "Social" ) {
+            imageResId[0] = R.drawable.walltab;
+            imageResId[1] = R.drawable.sharedtab;
+            imageResId[2] = R.drawable.friendstab;
+        }
+        else {
+            imageResId[0] = R.drawable.photosicon;
+            imageResId[1] = R.drawable.notesicon;
+            imageResId[2] = R.drawable.audiosicon;
+        }
     }
 
     public Fragment getItem(int pos){
