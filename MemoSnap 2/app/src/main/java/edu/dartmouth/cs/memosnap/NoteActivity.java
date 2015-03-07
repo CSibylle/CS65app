@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -90,7 +91,8 @@ public class NoteActivity extends Activity {
 
         // Editing from History
         if (getIntent().getStringExtra("History") != null) {
-            intent.putExtra("History", "history");
+            intent.putExtra("NoteHistory", "history");
+            Log.d("history", "coming from note history");
             intent.putExtra("id", entry.getId());
             intent.putExtra("Name", entry.getName());
             intent.putExtra("Tag", entry.getTag());

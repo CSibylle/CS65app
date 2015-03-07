@@ -1,11 +1,15 @@
 package edu.dartmouth.cs.memosnap;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,11 +28,12 @@ import java.io.IOException;
 
 public class SaveActivity extends Activity {
 
-    EditText mDateTime;
-    EditText mType;
-    String mNote;
-    byte[] mPhotoByteArray;
-    byte[] mRecordingByteArray;
+    private EditText mDateTime;
+    private EditText mType;
+    private String mNote;
+    private byte[] mPhotoByteArray;
+    private byte[] mRecordingByteArray;
+    private Location location;
 
     private Snap entry;
 
@@ -46,6 +51,15 @@ public class SaveActivity extends Activity {
                 displayEntry();
         } else {
             entry = new Snap();
+
+            LocationManager locationManager;
+            String svcName = Context.LOCATION_SERVICE;
+            locationManager = (LocationManager)getSystemService(svcName);
+
+            String provider = locationManager.NETWORK_PROVIDER;
+            location = locationManager.getLastKnownLocation(provider);
+            entry.setLatitude(location.getLatitude());
+            entry.setLongitude(location.getLongitude());
 
             if (getIntent().getStringExtra("DateTime") != null) {
                 String dateTimeString = getIntent().getStringExtra("DateTime");
@@ -69,7 +83,6 @@ public class SaveActivity extends Activity {
                     image.setImageBitmap(bmp);
                 } catch (Exception ex) {
                 }
-
             }
             else if (getIntent().getStringExtra("Type").contentEquals("Audio")) {
                 mRecordingByteArray = getIntent().getByteArrayExtra("Audio Byte Array");
@@ -77,13 +90,24 @@ public class SaveActivity extends Activity {
 
             if (getIntent().getStringExtra("Note") != null) {
                 mNote = getIntent().getStringExtra("Note");
+                Log.d("test", "gothere");
 
-                if (getIntent().getStringExtra("History") != null) {
+                if (getIntent().getStringExtra("NoteHistory") != null) {
+
+                    SnapDBHelper dbHelper = new SnapDBHelper(getApplicationContext());
+                    Long id = getIntent().getLongExtra("id", -1);
+                    entry = dbHelper.fetchEntryByIndex(id);
+
+                    Log.d("test", "test");
                     EditText name = (EditText) findViewById(R.id.editName);
                     name.setText(getIntent().getStringExtra("Name"));
 
                     EditText tag = (EditText) findViewById(R.id.editTag);
                     tag.setText(getIntent().getStringExtra("Tag"));
+
+                    location = new Location(provider);
+                    location.setLatitude(entry.getLatitude());
+                    location.setLongitude(entry.getLongitude());
                 }
             }
         }
@@ -213,6 +237,16 @@ public class SaveActivity extends Activity {
         tag.setFocusable(false);
         tag.setFocusableInTouchMode(false);
 
+        LocationManager locationManager;
+        String svcName = Context.LOCATION_SERVICE;
+        locationManager = (LocationManager)getSystemService(svcName);
+
+        String provider = locationManager.NETWORK_PROVIDER;
+
+        location = new Location(provider);
+        location.setLatitude(entry.getLatitude());
+        location.setLongitude(entry.getLongitude());
+
         if (getIntent().getStringExtra("History") != null) {
             if (getIntent().getStringExtra("History").contentEquals("Camera")) {
                 ImageView image = (ImageView) findViewById(R.id.save_photo);
@@ -232,6 +266,26 @@ public class SaveActivity extends Activity {
                 play.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    public void onMapClicked(View v) {
+        if (getIntent().getStringExtra("History") != null) {
+            Intent intent = new Intent(this, MapActivity.class);
+            double latitude = entry.getLatitude();
+            double longitude = entry.getLongitude();
+
+            location.setLatitude(latitude);
+            location.setLongitude(longitude);
+
+            intent.putExtra("Location", location);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, MapActivity.class);
+
+            intent.putExtra("Location", location);
+            startActivity(intent);
+        }
+
 
     }
 }

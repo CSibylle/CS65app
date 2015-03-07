@@ -28,6 +28,8 @@ public class Snap extends ParseObject{
     String note;
     byte[] recording;
     Location location;
+    double latitude;
+    double longitude;
 
     public Long getId() {
         return id;
@@ -93,11 +95,28 @@ public class Snap extends ParseObject{
         this.user = value;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+
     public ParseGeoPoint getGeoLocation() {
         return new ParseGeoPoint(location.getLatitude(), location.getLongitude());
     }
 
-    //public void setGeoLocation(ParseGeoPoint value) {;}
+    //public void setGeoLocation() {;}
 
     public static ParseQuery<Snap> getQuery() {
         return ParseQuery.getQuery(Snap.class);
