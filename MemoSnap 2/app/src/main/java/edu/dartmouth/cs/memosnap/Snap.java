@@ -8,6 +8,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+
 /**
  * Model class defining the properties of a "snap."
  *
@@ -15,19 +17,19 @@ import com.parse.ParseUser;
  */
 
 @ParseClassName("Snap")
-public class Snap extends ParseObject{
+public class Snap {
     Long id;
 
-    ParseUser user = ParseUser.getCurrentUser();
+    String user = ParseUser.getCurrentUser().toString();
 
-    String name;
-    String type;
-    String dateTime;
-    String tag;
-    byte[] photo;
-    String note;
-    byte[] recording;
-    Location location;
+    String name = "";
+    String type = "";
+    String dateTime = "";
+    String tag = "";
+    byte[] photo = new byte[0];
+    String note = "";
+    byte[] recording = new byte[0];
+    Location location = null;
 
     public Long getId() {
         return id;
@@ -85,22 +87,18 @@ public class Snap extends ParseObject{
         this.photo = photo;
     }
 
-    public ParseUser getUser() {
-        return user;
-    }
+    public String getUser() {return user;}
 
-    public void setUser(ParseUser value) {
+    public void setUser(String value) {
         this.user = value;
     }
 
-    public ParseGeoPoint getGeoLocation() {
-        return new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+    public Location getLocation() {
+        return location;
     }
 
-    //public void setGeoLocation(ParseGeoPoint value) {;}
-
-    public static ParseQuery<Snap> getQuery() {
-        return ParseQuery.getQuery(Snap.class);
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public byte[] getRecording() {return recording;}

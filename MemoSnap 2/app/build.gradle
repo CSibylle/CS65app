@@ -29,4 +29,6 @@ dependencies {
     //compile fileTree(dir: 'libs', include: 'Parse-*.jar')
     compile project(':ParseLoginUI')
     compile 'com.android.support:support-v13:21.0.3'
+    compile files('libs/android-query-full.0.26.7.jar')
+    compile "commons-io:commons-io:+"
 }

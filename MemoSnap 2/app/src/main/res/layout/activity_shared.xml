@@ -22,6 +22,15 @@
             android:layout_gravity="center_horizontal"
             android:visibility="gone"
             android:id="@+id/save_photo" />
+        <ImageButton
+            android:id="@+id/like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:onClick="onSaveClicked"
+            android:background="@drawable/graylike">
+        </ImageButton>
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,18 +55,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="@string/type" >
+            android:text="@string/add_tag_name" >
         </TextView>
 
         <EditText
-            android:layout_width="fill_parent"
+            android:id="@+id/editTag"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/save_type"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"/>
-
+            android:layout_margin="5dp"
+            android:hint="@string/hashtags"
+            android:inputType="textEmailAddress"
+            android:singleLine="true" >
+        </EditText>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,18 +87,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="@string/add_tag_name" >
+            android:text="@string/comment" >
         </TextView>
-
-        <EditText
-            android:id="@+id/editTag"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:hint="@string/tag_name"
-            android:inputType="textEmailAddress"
-            android:singleLine="true" >
-        </EditText>
+            android:orientation="horizontal">
+            <EditText
+                android:layout_width="288dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/addComment"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
+            <Button
+                android:id="@+id/comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onCommentClicked"
+                android:text="@string/button_share" >
+            </Button>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,42 +118,22 @@
             android:layout_margin="5dp" >
 
             <Button
-                android:id="@+id/btnSave"
+                android:id="@+id/view_comments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:onClick="onSaveClicked"
-                android:text="@string/button_save" >
+                android:onClick="onViewCommentsClicked"
+                android:text="@string/button_view_comments" >
             </Button>
 
             <Button
-                android:id="@+id/btnShare"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btnUnshare"
+                android:onClick="onUnshareClicked"
                 android:layout_weight="1"
-                android:onClick="onShareClicked"
-                android:text="@string/button_share" >
-            </Button>
-
-            <Button
-                android:id="@+id/btnDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onDeleteClicked"
-                android:text="@string/delete"/>
-
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:text="@string/unshare"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:onClick="onCancelClicked"
-                android:text="@string/button_cancel" >
-            </Button>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>

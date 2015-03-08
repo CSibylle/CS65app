@@ -40,19 +40,19 @@ public class SaveActivity extends Activity {
         mDateTime = (EditText) findViewById(R.id.save_datetime);
         mType = (EditText) findViewById(R.id.save_type);
 
-        if (getIntent().getStringExtra("History") != null) {
+        if (!getIntent().getStringExtra("History").equals("")) {
             if (getIntent().getStringExtra("History").contentEquals("Camera") ||
                     getIntent().getStringExtra("History").contentEquals("Audio"))
                 displayEntry();
         } else {
             entry = new Snap();
 
-            if (getIntent().getStringExtra("DateTime") != null) {
+            if (!getIntent().getStringExtra("DateTime").equals("")) {
                 String dateTimeString = getIntent().getStringExtra("DateTime");
                 mDateTime.setText(dateTimeString);
             }
 
-            if (getIntent().getStringExtra("Type") != null) {
+            if (!getIntent().getStringExtra("Type").equals("")) {
                 String typeString = getIntent().getStringExtra("Type");
                 mType.setText(typeString);
             }
@@ -75,10 +75,10 @@ public class SaveActivity extends Activity {
                 mRecordingByteArray = getIntent().getByteArrayExtra("Audio Byte Array");
             }
 
-            if (getIntent().getStringExtra("Note") != null) {
+            if (!getIntent().getStringExtra("Note").equals("")) {
                 mNote = getIntent().getStringExtra("Note");
 
-                if (getIntent().getStringExtra("History") != null) {
+                if (!getIntent().getStringExtra("History").equals("")) {
                     EditText name = (EditText) findViewById(R.id.editName);
                     name.setText(getIntent().getStringExtra("Name"));
 
@@ -156,6 +156,8 @@ public class SaveActivity extends Activity {
     }
 
     public void onShareClicked(View v) {
+        SocialHelper socialHelper = new SocialHelper();
+        socialHelper.share(SaveActivity.this,entry);
         Intent intent = new Intent(this, SocialActivity.class);
         startActivity(intent);
     }
@@ -164,7 +166,7 @@ public class SaveActivity extends Activity {
         mRecordingByteArray = entry.getRecording();
 
         // Play the audio recording if it exists by creating a temp file
-        if (mRecordingByteArray != null) {
+        if (mRecordingByteArray.length!=0) {
             try {
                 File temp = File.createTempFile("temp", "3gpp", getCacheDir());
                 temp.deleteOnExit();

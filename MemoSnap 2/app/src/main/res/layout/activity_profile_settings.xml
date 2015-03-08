@@ -1,4 +1,5 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/com_parse_ui_vertical_margin"
@@ -8,156 +9,149 @@
     android:gravity="center"
     android:orientation="vertical">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false" >
-
-                <ImageView
-                    android:id="@+id/imageProfile"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/profile_photo_discrip"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true" >
-
-                    <requestFocus />
-                </ImageView>
-
-                <Button
-                    android:id="@+id/btnChangePhoto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:onClick="onChangePhotoClicked"
-                    android:text="@string/update_pro_pic" >
-                </Button>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/profile_username_title" >
-            </TextView>
-
-            <EditText
-                android:id="@+id/editUserName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:hint="@string/profile_username_hint"
-                android:inputType="textCapWords"
-                android:singleLine="true" >
-
-                <requestFocus />
-            </EditText>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/profile_name_title" >
-            </TextView>
-
-            <EditText
-                android:id="@+id/editName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:hint="@string/profile_name_hint"
-                android:inputType="textCapWords"
-                android:singleLine="true" >
-
-                <requestFocus />
-            </EditText>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/profile_email_title" >
-            </TextView>
-
-            <EditText
-                android:id="@+id/editEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:hint="@string/profile_email_hint"
-                android:inputType="textEmailAddress"
-                android:singleLine="true" >
-            </EditText>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" >
-
-                <Button
-                    android:id="@+id/btnSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_weight="1"
-                    android:onClick="onSaveClicked"
-                    android:text="@string/button_save" >
-                </Button>
-
-                <Button
-                    android:id="@+id/btnCancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_weight="1"
-                    android:onClick="onCancelClicked"
-                    android:text="@string/button_cancel" >
-                </Button>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
 
-            <TextView
-                android:id="@+id/profile_title"
+            <ImageView
+                android:id="@+id/imageProfile"
+                android:background="@drawable/default_profile"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ParseLoginUI.TextView"
-                android:text="@string/profile_title_logged_in" />
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/profile_photo_discrip"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true">
 
-            <TextView
-                android:id="@+id/profile_name"
+                <requestFocus />
+            </ImageView>
+            <com.facebook.widget.ProfilePictureView
+                android:id="@+id/userProfilePicture"
+                android:visibility="invisible"
+                android:layout_height="150dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ParseLoginUI.TextView" />
-
-            <TextView
-                android:id="@+id/profile_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ParseLoginUI.TextView" />
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                facebook:preset_size="large"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" />
 
             <Button
+                android:id="@+id/btnChangePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="onChangePhotoClicked"
+                android:text="@string/update_pro_pic"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignBottom="@+id/imageProfile"
+                android:layout_centerHorizontal="true">
+            </Button>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:layout_margin="5dp"
+            android:text="@string/profile_username_title" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/editUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/profile_username_hint"
+            android:inputType="textCapWords"
+            android:singleLine="true" >
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/profile_name_title" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/profile_name_hint"
+            android:inputType="textCapWords"
+            android:singleLine="true" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/profile_email_title" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/profile_email_hint"
+            android:inputType="textEmailAddress"
+            android:singleLine="true" >
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profile_title"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ParseLoginUI.TextView"
+            android:text="@string/profile_title_logged_in" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/addFriends"
+                style="@style/ParseLoginUI.Button"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/com_parse_ui_large_vertical_spacing"
+                android:text="@string/add_friends"
+                android:layout_marginRight="10dp"
+                android:onClick="addFriendsClicked"/>
+            <Button
                 android:id="@+id/log_in_out_button"
+                android:layout_weight="1"
                 style="@style/ParseLoginUI.Button"
                 android:layout_marginTop="@dimen/com_parse_ui_large_vertical_spacing"
                 android:text="@string/profile_logout_button_label"/>
         </LinearLayout>
+
     </LinearLayout>
-</ScrollView>
+</LinearLayout>
 

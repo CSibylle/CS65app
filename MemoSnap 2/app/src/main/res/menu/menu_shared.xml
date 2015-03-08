@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_title"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/snap_name"/>
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_action_refresh"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_refresh">
+    </item>
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" android:showAsAction="never" />
+
+
+</menu>

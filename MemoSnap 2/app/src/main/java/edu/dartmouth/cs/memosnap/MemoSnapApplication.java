@@ -8,6 +8,7 @@ import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseTwitterUtils;
+import com.parse.ParseUser;
 
 public class MemoSnapApplication extends Application {
 
@@ -28,7 +29,7 @@ public class MemoSnapApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ParseObject.registerSubclass(Snap.class);
+        SnapParseObj.registerSubclass(SnapParseObj.class);
 
         Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
 
@@ -39,17 +40,10 @@ public class MemoSnapApplication extends Application {
         ParseTwitterUtils.initialize(getString(R.string.twitter_consumer_key),
                 getString(R.string.twitter_consumer_secret));
 
-        //configHelper = new ConfigHelper();
-        //configHelper.fetchConfigIfNeeded();
-    }
+        ParseUser.enableAutomaticUser();
 
-    public static float getSearchDistance() {
-        return  DEFAULT_SEARCH_DISTANCE;
-    }
 
-    //public static ConfigHelper getConfigHelper() {
-        //return configHelper;
-    //}
+    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

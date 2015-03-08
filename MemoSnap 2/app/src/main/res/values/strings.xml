@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">MemoSnap</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_save">SaveActivity</string>
@@ -21,7 +22,7 @@
     <string name="action_home">Home</string>
     <string name="snap_name">Snap Name:</string>
     <string name="enter_snap_name">snap name</string>
-    <string name="add_tag_name">Custom Tag:</string>
+    <string name="add_tag_name">HashTags:</string>
     <string name="tag_name">tag name</string>
     <string name="button_save">SAVE</string>
     <string name="button_cancel">CANCEL</string>
@@ -31,16 +32,13 @@
     <string name="twitter_consumer_secret">xHEvfwbWKFNg3SwJeGoml5FWnN2GCAroZXzEC5ZludIsR5Xrxs</string>
     <string name="parse_app_id">WC76yAqiBZXoFmCAo39Oxe79nsC0WXznE0jd54uJ</string>
     <string name="parse_client_key">7UMienIoaNfR5sjkAj6X8NuOE0fAYxXhVvOT7ztY</string>
-
-
     <string name="profile_logo_content_description">Logo</string>
-    <string name="profile_title_logged_in">Your are logged in as</string>
-    <string name="profile_logout_button_label">Log out</string>
-    <string name="profile_title_logged_out">You must be logged in to view your profile</string>
+    <string name="profile_title_logged_in">Logged In!</string>
+    <string name="profile_logout_button_label">Log Out</string>
+    <string name="profile_title_logged_out">Must log in to view your profile</string>
     <string name="profile_login_button_label">Log in</string>
     <string name="title_activity_after_login">AfterLoginActivity</string>
     <string name="login">login</string>
-
     <string name="button_share">SHARE</string>
     <string name="type">Type:</string>
     <string name="date">Date:</string>
@@ -56,9 +54,26 @@
     <string name="profile_name_hint">First Last</string>
     <string name="profile_email_title">Email:</string>
     <string name="profile_email_hint">email</string>
+    <string name="delete">DELETE</string>
+    <string name="unshare">UNSHARE</string>
+
     <string-array name="my_facebook_permissions">
         <item>public_profile</item>
         <item>user_friends</item>
     </string-array>
+    <string-array name="snap_type_array">
+        <item>Images</item>
+        <item>Notes</item>
+        <item>Audio</item>
+    </string-array>
+
+    <string name="title_activity_shared">SharedActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hashtags">hash tags</string>
+    <string name="comment">Comment</string>
+    <string name="button_view_comments">VIEW COMMENTS</string>
+    <string name="numLikes">0 likes</string>
+    <string name="action_refresh">refresh</string>
+    <string name="add_friends">Add Friends</string>
 
 </resources>
