@@ -116,12 +116,23 @@
             </Button>
 
             <Button
+<<<<<<< HEAD
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="onDeleteClicked"
                 android:text="@string/delete"/>
+=======
+                android:id="@+id/btnMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:onClick="onMapClicked"
+                android:text="@string/button_map" >
+            </Button>
+>>>>>>> ebe186af8288562445e210010a61d1b7246288f6
 
             <Button
                 android:id="@+id/btnCancel"

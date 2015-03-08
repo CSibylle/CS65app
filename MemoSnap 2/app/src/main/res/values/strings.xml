@@ -11,6 +11,7 @@
     <string name="title_activity_entry_view">EntryViewActivity</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_profile_settings">ProfileSettingsActivity</string>
+    <string name="title_activity_map">MapActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btnCancel">CANCEL</string>
     <string name="btnSave">SAVE</string>
@@ -43,6 +44,7 @@
     <string name="type">Type:</string>
     <string name="date">Date:</string>
     <string name="btnContinue">CONTINUE</string>
+    <string name="button_map">MAP</string>
     <string name="save_play">PLAY RECORDING</string>
     <string name="audioTime">00:00:00</string>
     <string name="email">email</string>

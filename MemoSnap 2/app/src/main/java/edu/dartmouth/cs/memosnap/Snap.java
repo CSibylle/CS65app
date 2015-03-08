@@ -22,6 +22,7 @@ public class Snap {
 
     String user = ParseUser.getCurrentUser().toString();
 
+<<<<<<< HEAD
     String name = "";
     String type = "";
     String dateTime = "";
@@ -30,6 +31,18 @@ public class Snap {
     String note = "";
     byte[] recording = new byte[0];
     Location location = null;
+=======
+    String name;
+    String type;
+    String dateTime;
+    String tag;
+    byte[] photo;
+    String note;
+    byte[] recording;
+    Location location;
+    double latitude;
+    double longitude;
+>>>>>>> ebe186af8288562445e210010a61d1b7246288f6
 
     public Long getId() {
         return id;
@@ -93,12 +106,40 @@ public class Snap {
         this.user = value;
     }
 
+<<<<<<< HEAD
     public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
+=======
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+
+    public ParseGeoPoint getGeoLocation() {
+        return new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+    }
+
+    //public void setGeoLocation() {;}
+
+    public static ParseQuery<Snap> getQuery() {
+        return ParseQuery.getQuery(Snap.class);
+>>>>>>> ebe186af8288562445e210010a61d1b7246288f6
     }
 
     public byte[] getRecording() {return recording;}

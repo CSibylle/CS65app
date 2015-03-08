@@ -28,11 +28,12 @@ public class SnapDBHelper extends SQLiteOpenHelper {
     public static final String KEY_PHOTO = "photo";
     public static final String KEY_NOTE = "note";
     public static final String KEY_RECORDING = "recording";
-    public static final String KEY_LOCATION = "location";
+    public static final String KEY_LATITUDE = "latitude";
+    public static final String KEY_LONGITUDE = "longitude";
 
     // Add location
     public String[] allColumns = {KEY_ROWID, KEY_NAME, KEY_TYPE, KEY_DATETIME, KEY_TAG, KEY_PHOTO,
-                                    KEY_NOTE, KEY_RECORDING};
+                                    KEY_NOTE, KEY_RECORDING, KEY_LATITUDE, KEY_LONGITUDE};
 
 
     // Add location
@@ -54,7 +55,11 @@ public class SnapDBHelper extends SQLiteOpenHelper {
             + KEY_NOTE
             + " TEXT, "
             + KEY_RECORDING
-            + " BLOB " + ");";
+            + " BLOB, "
+            + KEY_LATITUDE
+            + " FLOAT, "
+            + KEY_LONGITUDE
+            + " FLOAT " + ");";
 
 
 
@@ -87,7 +92,8 @@ public class SnapDBHelper extends SQLiteOpenHelper {
         values.put(KEY_PHOTO, entry.getPhoto());
         values.put(KEY_NOTE, entry.getNote());
         values.put(KEY_RECORDING, entry.getRecording());
-        //values.put(KEY_LOCATION, entry.getLocation());
+        values.put(KEY_LATITUDE, entry.getLatitude());
+        values.put(KEY_LONGITUDE, entry.getLongitude());
 
         long insertId = db.insert(TABLE_NAME_SNAPS, null,
                 values);
@@ -158,6 +164,8 @@ public class SnapDBHelper extends SQLiteOpenHelper {
         entry.setPhoto(cursor.getBlob(5));
         entry.setNote(cursor.getString(6));
         entry.setRecording(cursor.getBlob(7));
+        entry.setLatitude(cursor.getFloat(8));
+        entry.setLongitude(cursor.getFloat(9));
 
         return entry;
     }
