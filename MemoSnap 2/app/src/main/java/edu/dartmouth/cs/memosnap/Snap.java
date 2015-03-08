@@ -4,11 +4,8 @@ import android.location.Location;
 
 import com.parse.ParseClassName;
 import com.parse.ParseGeoPoint;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
-import java.util.ArrayList;
 
 /**
  * Model class defining the properties of a "snap."
@@ -22,16 +19,6 @@ public class Snap {
 
     String user = ParseUser.getCurrentUser().toString();
 
-<<<<<<< HEAD
-    String name = "";
-    String type = "";
-    String dateTime = "";
-    String tag = "";
-    byte[] photo = new byte[0];
-    String note = "";
-    byte[] recording = new byte[0];
-    Location location = null;
-=======
     String name;
     String type;
     String dateTime;
@@ -42,7 +29,6 @@ public class Snap {
     Location location;
     double latitude;
     double longitude;
->>>>>>> ebe186af8288562445e210010a61d1b7246288f6
 
     public Long getId() {
         return id;
@@ -106,14 +92,14 @@ public class Snap {
         this.user = value;
     }
 
-<<<<<<< HEAD
     public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
-=======
+    }
+
     public double getLatitude() {
         return latitude;
     }
@@ -139,7 +125,6 @@ public class Snap {
 
     public static ParseQuery<Snap> getQuery() {
         return ParseQuery.getQuery(Snap.class);
->>>>>>> ebe186af8288562445e210010a61d1b7246288f6
     }
 
     public byte[] getRecording() {return recording;}

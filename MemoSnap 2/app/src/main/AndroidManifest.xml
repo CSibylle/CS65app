@@ -65,15 +65,9 @@
             android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-<<<<<<< HEAD
-            android:value="YOUR_GOOGLE_ANDROID_MAPS_V2_API_KEY" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-=======
             android:value="@string/google_maps_key" />
 
         <meta-data android:name="com.google.android.gms.version"
->>>>>>> ebe186af8288562445e210010a61d1b7246288f6
             android:value="@integer/google_play_services_version" />
 
         <activity

@@ -45,16 +45,13 @@ public class SaveActivity extends Activity {
         mDateTime = (EditText) findViewById(R.id.save_datetime);
         mType = (EditText) findViewById(R.id.save_type);
 
-        if (!getIntent().getStringExtra("History").equals("")) {
+        if (getIntent().getStringExtra("History") != null) {
             if (getIntent().getStringExtra("History").contentEquals("Camera") ||
                     getIntent().getStringExtra("History").contentEquals("Audio"))
                 displayEntry();
         } else {
             entry = new Snap();
 
-<<<<<<< HEAD
-            if (!getIntent().getStringExtra("DateTime").equals("")) {
-=======
             LocationManager locationManager;
             String svcName = Context.LOCATION_SERVICE;
             locationManager = (LocationManager)getSystemService(svcName);
@@ -65,12 +62,11 @@ public class SaveActivity extends Activity {
             entry.setLongitude(location.getLongitude());
 
             if (getIntent().getStringExtra("DateTime") != null) {
->>>>>>> ebe186af8288562445e210010a61d1b7246288f6
                 String dateTimeString = getIntent().getStringExtra("DateTime");
                 mDateTime.setText(dateTimeString);
             }
 
-            if (!getIntent().getStringExtra("Type").equals("")) {
+            if (getIntent().getStringExtra("Type") != null) {
                 String typeString = getIntent().getStringExtra("Type");
                 mType.setText(typeString);
             }
@@ -92,7 +88,7 @@ public class SaveActivity extends Activity {
                 mRecordingByteArray = getIntent().getByteArrayExtra("Audio Byte Array");
             }
 
-            if (!getIntent().getStringExtra("Note").equals("")) {
+            if (getIntent().getStringExtra("Note") != null) {
                 mNote = getIntent().getStringExtra("Note");
                 Log.d("test", "gothere");
 
@@ -102,11 +98,7 @@ public class SaveActivity extends Activity {
                     Long id = getIntent().getLongExtra("id", -1);
                     entry = dbHelper.fetchEntryByIndex(id);
 
-<<<<<<< HEAD
-                if (!getIntent().getStringExtra("History").equals("")) {
-=======
                     Log.d("test", "test");
->>>>>>> ebe186af8288562445e210010a61d1b7246288f6
                     EditText name = (EditText) findViewById(R.id.editName);
                     name.setText(getIntent().getStringExtra("Name"));
 
@@ -188,8 +180,6 @@ public class SaveActivity extends Activity {
     }
 
     public void onShareClicked(View v) {
-        SocialHelper socialHelper = new SocialHelper();
-        socialHelper.share(SaveActivity.this,entry);
         Intent intent = new Intent(this, SocialActivity.class);
         startActivity(intent);
     }
@@ -198,7 +188,7 @@ public class SaveActivity extends Activity {
         mRecordingByteArray = entry.getRecording();
 
         // Play the audio recording if it exists by creating a temp file
-        if (mRecordingByteArray.length!=0) {
+        if (mRecordingByteArray != null) {
             try {
                 File temp = File.createTempFile("temp", "3gpp", getCacheDir());
                 temp.deleteOnExit();
